@@ -1,0 +1,22 @@
+<script>
+    window.addEventListener('load', () => {
+        const container = document.querySelector('.meteor-container')
+
+        function createMeteor() {
+            const meteor = document.createElement('div')
+            meteor.classList.add('meteor-shower')
+            meteor.style.top = '0'
+            meteor.style.left =
+                Math.floor(Math.random() * (90 - -40) + -40) + 'vw'
+            meteor.style.animationDelay =
+                Math.random() * (0.8 - 0.2) + 0.2 + 's'
+            meteor.style.animationDuration =
+                Math.floor(Math.random() * 3 + 2) + 's'
+            container.appendChild(meteor)
+        }
+
+        new Array(15).fill(null).forEach(createMeteor)
+    })
+</script>
+
+<div class="meteor-container"></div>

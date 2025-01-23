@@ -1,0 +1,110 @@
+{{- with site.Params.homeInfoParams }}
+    <div
+        class="h-screen flex justify-center items-center py-16 px-8 md:p-16 relative overflow-hidden bg-gradient-to-br from-lavender to-peach"
+        id="hero"
+    >
+        <div class="z-1 absolute left-0 top-0 right-0 bottom-0">
+            {{ partial "meteor.html" }}
+        </div>
+
+        <div class="absolute left-0 bottom-0 w-full z-1">
+            <div
+                class="flex justify-center items-end gap-8 text-[10px] sm:gap-16 sm:text-[14px] lg:text-base"
+            >
+                {{- with resources.Get (path.Join "imgs" "hku-bear.png") }}
+                    {{- with .Process "fill 240x240 webp top" }}
+                        <img
+                            class="w-[10em] -rotate-12 transition opacity-30 translate-y-4 hover:opacity-100 hover:translate-y-0"
+                            src="{{ .RelPermalink }}"
+                            alt=""
+                        />
+                    {{- end }}
+                {{- end }}
+
+                {{- with resources.Get (path.Join "imgs" "case.png") }}
+                    {{- with .Process "fill 240x300 webp top" }}
+                        <img
+                            class="w-[10em] transition opacity-30 translate-y-4 hover:opacity-100 hover:translate-y-0"
+                            src="{{ .RelPermalink }}"
+                            alt=""
+                        />
+                    {{- end }}
+                {{- end }}
+
+                {{- with resources.Get (path.Join "imgs" "hku-bear-pink.png") }}
+                    {{- with .Process "fill 240x240 webp top" }}
+                        <img
+                            class="w-[10em] rotate-12 transition opacity-30 translate-y-4 hover:opacity-100 hover:translate-y-0"
+                            src="{{ .RelPermalink }}"
+                            alt=""
+                        />
+                    {{- end }}
+                {{- end }}
+            </div>
+        </div>
+
+        <div class="justify-left z-10 -mt-16">
+            <div class="flex flex-col items-center mb-6">
+                {{- with resources.Get (path.Join "imgs" site.Params.avatar) }}
+                    {{- with .Fill "480x480 center webp" }}
+                        <img
+                            class="rounded-full w-20 h-20 mb-2.5 shadow-sm shadow-pink-100"
+                            src="{{ .RelPermalink }}"
+                            alt=""
+                        />
+                    {{- end }}
+                {{- end }}
+
+
+                <p class="font-corinthia font-bold text-4xl tracking-[5px]">
+                    {{ T "name" }}
+                </p>
+            </div>
+
+            <div
+                class="transition-[font-size] text-xl sm:text-4xl md:text-5xl font-bold leading-normal sm:leading-normal md:leading-normal mb-8 relative"
+                style="font-family: Jost, sans-serif"
+            >
+                <div class="opacity-0">
+                    {{ .title | markdownify }}<br />
+                    {{ .content | markdownify }}
+                    <span class="inline-block w-0"></span>
+                </div>
+                <div
+                    id="typeit"
+                    class="absolute top-0 left-0 opacity-0"
+                    style="--ti-cursor-transform: ''"
+                >
+                    {{ .title | markdownify }}<br />
+                    {{ .content | markdownify }}
+                </div>
+                {{- $typeitjs := resources.Get "js/typeit.min.js" }}
+                {{- if not site.Params.assets.disableFingerprinting }}
+                    {{- $typeitjs = fingerprint $typeitjs }}
+                    <script
+                        defer
+                        crossorigin="anonymous"
+                        src="{{ $typeitjs.RelPermalink }}"
+                        integrity="{{ $typeitjs.Data.Integrity }}"
+                    ></script>
+                {{- else }}
+                    <script
+                        defer
+                        crossorigin="anonymous"
+                        src="{{ $typeitjs.RelPermalink }}"
+                    ></script>
+                {{- end }}
+                <script>
+                    window.addEventListener('load', () => {
+                        const el = document.getElementById('typeit')
+                        const it = new TypeIt(el, {
+                            afterComplete: () =>
+                                setTimeout(() => it.destroy(), 500),
+                        }).go()
+                        el.classList.remove('opacity-0')
+                    })
+                </script>
+            </div>
+        </div>
+    </div>
+{{- end -}}
