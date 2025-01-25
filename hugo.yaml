@@ -1,7 +1,9 @@
 baseURL: 'https://wangsiyu0110.github.io/'
 title: Wang Siyu's Personal Site
-paginate: 5
-theme: PaperMod
+paginate: 6
+theme:
+    - PaperMod
+    - shortcode-gallery
 defaultLanguage: zh
 defaultLanguageCode: zh-CN
 
@@ -19,7 +21,7 @@ params:
     title: ExampleSite
     description: 'ExampleSite description'
     keywords: [Blog, Portfolio, PaperMod]
-    author: Me
+    author: me
     avatar: avatar.png
     # author: ["Me", "You"] # multiple authors
     images: ['<link or path of image for opengraph, twitter-cards>']
@@ -85,6 +87,9 @@ params:
         - name: github
           url: 'https://github.com/'
 
+    socialLinks:
+        xiaohongshu: https://www.xiaohongshu.com/user/profile/5c2f51df000000000502b045
+
     analytics:
         google:
             SiteVerificationTag: 'XYZabc'
@@ -94,9 +99,9 @@ params:
             SiteVerificationTag: 'XYZabc'
 
     cover:
-        hidden: true # hide everywhere but not in structured data
-        hiddenInList: true # hide on list pages and home
-        hiddenInSingle: true # hide on single page
+        hidden: false # hide everywhere but not in structured data
+        hiddenInList: false # hide on list pages and home
+        hiddenInSingle: false # hide on single page
 
     # editPost:
     #   URL: "https://github.com/<path_to_repo>/content"
@@ -120,9 +125,9 @@ menu:
           name: home
           url: /
           weight: 10
-        - identifier: about
-          name: about
-          url: /about/
+        - identifier: snow
+          name: snow
+          url: /snow/
           weight: 20
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true

@@ -1,62 +1,69 @@
 <script>
     window.addEventListener('load', () => {
         const header = document.getElementById('header')
-        const clazz = ['bg-white', 'border-b', 'border-slate-900/10']
+        const hero = document.getElementById('hero')
+        const clazz = ['border-b', 'bg-white']
 
-        if (window.scrollY > 0) {
+        if (!hero || window.scrollY > 0) {
+            header.style.transition = 'none'
             header.classList.add(...clazz)
+            setTimeout(() => {
+                header.style.transition = ''
+            }, 0)
         }
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 0) {
                 header.classList.add(...clazz)
-            } else {
+            } else if (!!hero) {
                 header.classList.remove(...clazz)
             }
+        })
+
+        const ham = document.getElementById('ham')
+        const expand = 'expand'
+
+        ham.addEventListener('click', () => {
+            header.classList.toggle(expand)
+            ham.classList.toggle(active)
         })
     })
 </script>
 
 <header
-    class="fixed left-0 top-0 right-0 z-40 transition duration-500 "
+    class="expand:border-b expand:bg-white fixed top-0 right-0 left-0 z-[100] border-slate-300 transition-[background-color]"
     id="header"
 >
     <nav
-        class="lg:w-[64rem] min-h-16 mx-auto flex items-center justify-between px-gap py-gap-0.5 lg:px-0"
+        class="mx-auto flex flex-col border-slate-300 duration-250 lg:w-[64rem]"
     >
-        <div class="font-corinthia font-bold text-2xl tracking-[5px]">
-            {{ T "name" }}
+        <div class="flex h-16 items-center justify-between px-6 py-3 lg:px-0">
+            <a
+                href="{{ "" | absLangURL }}"
+                class="font-corinthia text-2xl font-bold tracking-[5px]"
+            >
+                {{ T "name" }}
+            </a>
+            <div class="hidden md:block">
+                {{- partial "header_menu.html" . -}}
+            </div>
+            <a
+                href="#"
+                aria-label="toggle menu"
+                title="Toggle menu"
+                class="btn-ham text-[1.5rem] md:hidden"
+                style="--ham-color: black"
+                id="ham"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
         </div>
-        <label for="check" class="flex flex-col">
-            <input type="checkbox" id="check" />
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        {{- $currentPage := . }}
-        <ul id="menu">
-            {{- range site.Menus.main }}
-                {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
-                {{- $page_url:= $currentPage.Permalink | absLangURL }}
-                {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
-                <li>
-                    <a
-                        href="{{ .URL | absLangURL }}"
-                        title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
-                        {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}
-                    >
-                        <span
-                            {{- if eq $menu_item_url $page_url }}
-                                class="active"
-                            {{- end }}
-                        >
-                            {{- .Pre }}
-                            {{- .Name -}}
-                            {{ .Post -}}
-                        </span>
-                    </a>
-                </li>
-            {{- end }}
-        </ul>
+        <div
+            class="expand:opacity-100 expand:grid-rows-[1fr] grid grid-rows-[0fr] border-t border-slate-300 bg-white opacity-0 transition-all md:hidden"
+        >
+            {{- partial "header_menu.html" . -}}
+        </div>
     </nav>
 </header>

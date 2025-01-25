@@ -1,20 +1,20 @@
 {{- with site.Params.homeInfoParams }}
     <div
-        class="h-screen flex justify-center items-center py-16 px-8 md:p-16 relative overflow-hidden bg-gradient-to-br from-lavender to-peach"
+        class="from-lavender to-peach section relative flex h-dvh items-center justify-center overflow-hidden bg-linear-to-br"
         id="hero"
     >
-        <div class="z-1 absolute left-0 top-0 right-0 bottom-0">
+        <div class="absolute top-0 right-0 bottom-0 left-0 z-1">
             {{ partial "meteor.html" }}
         </div>
 
-        <div class="absolute left-0 bottom-0 w-full z-1">
+        <div class="absolute bottom-0 left-0 z-1 w-full">
             <div
-                class="flex justify-center items-end gap-8 text-[10px] sm:gap-16 sm:text-[14px] lg:text-base"
+                class="flex items-end justify-center gap-8 text-[10px] sm:gap-16 sm:text-[14px] lg:text-base"
             >
                 {{- with resources.Get (path.Join "imgs" "hku-bear.png") }}
                     {{- with .Process "fill 240x240 webp top" }}
                         <img
-                            class="w-[10em] -rotate-12 transition opacity-30 translate-y-4 hover:opacity-100 hover:translate-y-0"
+                            class="w-[10em] translate-y-4 -rotate-12 opacity-30 transition hover:translate-y-0 hover:opacity-100"
                             src="{{ .RelPermalink }}"
                             alt=""
                         />
@@ -24,7 +24,7 @@
                 {{- with resources.Get (path.Join "imgs" "case.png") }}
                     {{- with .Process "fill 240x300 webp top" }}
                         <img
-                            class="w-[10em] transition opacity-30 translate-y-4 hover:opacity-100 hover:translate-y-0"
+                            class="w-[10em] translate-y-4 opacity-30 transition hover:translate-y-0 hover:opacity-100"
                             src="{{ .RelPermalink }}"
                             alt=""
                         />
@@ -34,7 +34,7 @@
                 {{- with resources.Get (path.Join "imgs" "hku-bear-pink.png") }}
                     {{- with .Process "fill 240x240 webp top" }}
                         <img
-                            class="w-[10em] rotate-12 transition opacity-30 translate-y-4 hover:opacity-100 hover:translate-y-0"
+                            class="w-[10em] translate-y-4 rotate-12 opacity-30 transition hover:translate-y-0 hover:opacity-100"
                             src="{{ .RelPermalink }}"
                             alt=""
                         />
@@ -44,11 +44,11 @@
         </div>
 
         <div class="justify-left z-10 -mt-16">
-            <div class="flex flex-col items-center mb-6">
+            <div class="mb-6 flex flex-col items-center">
                 {{- with resources.Get (path.Join "imgs" site.Params.avatar) }}
                     {{- with .Fill "480x480 center webp" }}
                         <img
-                            class="rounded-full w-20 h-20 mb-2.5 shadow-sm shadow-pink-100"
+                            class="mb-2.5 h-20 w-20 rounded-full shadow-xs shadow-pink-100"
                             src="{{ .RelPermalink }}"
                             alt=""
                         />
@@ -56,14 +56,13 @@
                 {{- end }}
 
 
-                <p class="font-corinthia font-bold text-4xl tracking-[5px]">
+                <p class="font-corinthia text-4xl font-bold tracking-[5px]">
                     {{ T "name" }}
                 </p>
             </div>
 
             <div
-                class="transition-[font-size] text-xl sm:text-4xl md:text-5xl font-bold leading-normal sm:leading-normal md:leading-normal mb-8 relative"
-                style="font-family: Jost, sans-serif"
+                class="font-primary relative mb-8 text-xl leading-normal font-bold transition-[font-size] sm:text-4xl sm:leading-normal md:text-5xl md:leading-normal"
             >
                 <div class="opacity-0">
                     {{ .title | markdownify }}<br />

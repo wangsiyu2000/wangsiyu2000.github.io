@@ -1,3 +1,101 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --color-lavender: #eeeefa;
+    --color-peach: #feddd6;
+
+    --color-xiaohongshu: #ff2442;
+
+    --font-corinthia: Corinthia;
+    --font-jost: jost;
+
+    --font-primary: var(--font-jost);
+
+    --ease-in-out-sine: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    --color-pastel-pink-50: #fdf3f3;
+    --color-pastel-pink-100: #fce7ea;
+    --color-pastel-pink-200: #f6c6ce;
+    --color-pastel-pink-300: #f2afba;
+    --color-pastel-pink-400: #ea8296;
+    --color-pastel-pink-500: #de5572;
+    --color-pastel-pink-600: #c9355c;
+    --color-pastel-pink-700: #a9274d;
+    --color-pastel-pink-800: #8e2346;
+    --color-pastel-pink-900: #7a2140;
+    --color-pastel-pink-950: #430e1f;
+
+    --color-primary-50: var(--color-pastel-pink-50);
+    --color-primary-100: var(--color-pastel-pink-100);
+    --color-primary-200: var(--color-pastel-pink-200);
+    --color-primary-300: var(--color-pastel-pink-300);
+    --color-primary-400: var(--color-pastel-pink-400);
+    --color-primary-500: var(--color-pastel-pink-500);
+    --color-primary-600: var(--color-pastel-pink-600);
+    --color-primary-700: var(--color-pastel-pink-700);
+    --color-primary-800: var(--color-pastel-pink-800);
+    --color-primary-900: var(--color-pastel-pink-900);
+    --color-primary-950: var(--color-pastel-pink-950);
+}
+
+@custom-variant expand (&:where(.expand, .expand *));
+
+@layer utilities {
+    .section {
+        @apply px-8 py-16 md:p-16;
+    }
+}
+
+@layer components {
+    .btn-ham {
+        --ham-bar-size: calc(1em / 10);
+
+        width: 1em;
+        height: 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        padding: calc(var(--ham-bar-size) * 2) 0;
+
+        & > span {
+            height: var(--ham-bar-size);
+            border-radius: var(--ham-bar-size);
+            background-color: var(--ham-color);
+            display: inline-flex;
+            transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        }
+
+        & > span:nth-of-type(1) {
+            width: 50%;
+        }
+
+        & > span:nth-of-type(2) {
+            width: 100%;
+        }
+
+        & > span:nth-of-type(3) {
+            width: 75%;
+        }
+
+        &:where(&.active) > span:nth-of-type(1) {
+            transform: translate(0.25em, 0.25em) rotatez(45deg)
+                translate(-0.25em, 0);
+        }
+
+        &:where(&.active) > span:nth-of-type(2) {
+            transform: rotatez(-45deg);
+        }
+
+        &:where(&.active) > span:nth-of-type(3) {
+            width: 50%;
+            transform: translate(0.25em, -0.25em) rotatez(45deg)
+                translate(0.25em);
+        }
+
+        &:hover:not(:where(&.active)) > span {
+            width: 100%;
+        }
+    }
+}

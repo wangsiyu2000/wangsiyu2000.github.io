@@ -1,0 +1,81 @@
+{{/*  <div class="flex flex-col gap-y-5">
+    {{- range $index, $page := $paginator.Pages }}
+        {{- $pageBundleCover := (.Resources.ByType "image").GetMatch (printf "*%s*" (.Params.cover.image)) }}
+        {{- $globalResourcesCover := (resources.ByType "image").GetMatch (printf "*%s*" (.Params.cover.image)) }}
+        {{- $cover := (or $pageBundleCover $globalResourcesCover) }}
+        <article class="group flex gap-8 py-1">
+            <figure
+                class="ease-in-out-sine after:from-primary-200/40 relative hidden size-52 shrink-0 overflow-hidden rounded-sm transition duration-500 group-hover:scale-[0.97] after:absolute after:top-0 after:right-0 after:bottom-0 after:left-0 after:bg-gradient-to-t after:to-transparent after:transition-opacity after:duration-300 hover:after:opacity-0 sm:block"
+            >
+                {{- with $cover.Crop "500x500 smart" }}
+                    <img
+                        loading="lazy"
+                        src="{{- .RelPermalink }}"
+                        alt="{{ .Params.cover.caption }}"
+                    />
+                {{- end }}
+            </figure>
+            <div class="flex flex-col pt-1.5">
+                <header
+                    class="font-primary mb-2 text-lg font-bold text-neutral-900 sm:text-2xl"
+                >
+                    <a
+                        aria-label="post link to {{ .Title | plainify }}"
+                        href="{{ .Permalink }}"
+                        title="{{ .Title }}"
+                        class=""
+                    >
+                        <span
+                            class="sm:from-primary-200 sm:to-primary-100 line-clamp-2 bg-gradient-to-r bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] sm:inline-flex"
+                        >
+                            {{- .Title }}
+                        </span>
+                    </a>
+                </header>
+                <p
+                    class="mb-3 flex flex-wrap items-center gap-x-2.5 text-sm text-neutral-500 sm:mb-4"
+                >
+                    <span>
+                        By
+                        <span class="font-primary text-neutral-900">
+                            {{- with (partial "author.html" .) }}
+                                {{- . }}
+                            {{- end }}
+                        </span>
+                    </span>
+                    <span title="{{ .Date }}">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                            fill="currentColor"
+                            class="inline-flex h-3 -translate-y-[1px]"
+                        >
+                            <path
+                                d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
+                            />
+                        </svg>
+                        <span>
+                            {{ (.Date | time.Format (default "January 2, 2006" site.Params.DateFormat)) }}
+                        </span>
+                    </span>
+                </p>
+                <p
+                    class="line-clamp-3 text-base leading-6 text-neutral-500/95 md:mb-4"
+                >
+                    {{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}
+                        ...
+                    {{ end }}
+                </p>
+                <p class="mb-3 hidden md:block">
+                    <a
+                        aria-label="post link to {{ .Title | plainify }}"
+                        href="{{ .Permalink }}"
+                        class="font-primary after:ease-in-out-sine inline-flex items-center text-sm font-medium duration-300 after:ml-3 after:block after:size-1.5 after:rotate-45 after:border-t after:border-r after:transition-all hover:after:ml-4"
+                    >
+                        {{- T "read_more" }}
+                    </a>
+                </p>
+            </div>
+        </article>
+    {{- end }}
+</div>  */}}

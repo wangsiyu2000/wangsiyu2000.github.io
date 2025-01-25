@@ -1,65 +1,65 @@
 {{- define "main" }}
+    <div class="flex justify-center px-4 py-8 pt-24">
+        <article class="flex max-w-full flex-col gap-y-4 lg:max-w-prose">
+            <header>
+                <h1 class="mb-4 text-4xl leading-12 font-bold text-gray-900">
+                    {{ .Title }}
+                    {{- if .Draft }}
+                        <span class="entry-hint" title="Draft">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="35"
+                                viewBox="0 -960 960 960"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"
+                                />
+                            </svg>
+                        </span>
+                    {{- end }}
+                </h1>
+                <p
+                    class="mb-3 flex flex-wrap items-center gap-x-2.5 text-sm text-neutral-500 sm:mb-4"
+                >
+                    <span>
+                        By
+                        <span class="font-primary text-neutral-900">
+                            {{- with (partial "author.html" .) }}
+                                {{- . }}
+                            {{- end }}
+                        </span>
+                    </span>
+                    <span title="{{ .Date }}">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                            fill="currentColor"
+                            class="inline-flex h-3 -translate-y-[1px]"
+                        >
+                            <path
+                                d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
+                            />
+                        </svg>
+                        <span>
+                            {{ (.Date | time.Format (default "January 2, 2006" site.Params.DateFormat)) }}
+                        </span>
+                    </span>
+                </p>
+            </header>
 
-<article class="post-single">
-  <header class="post-header">
-    {{ partial "breadcrumbs.html" . }}
-    <h1 class="post-title entry-hint-parent">
-      {{ .Title }}
-      {{- if .Draft }}
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-      {{- end }}
-    </h1>
-    {{- if .Description }}
-    <div class="post-description">
-      {{ .Description }}
+            {{- if .Content }}
+                <div class="prose">
+                    {{ .Content }}
+                </div>
+            {{- end }}
+
+
+            <footer class="mt-4 flex flex-col gap-y-4">
+                {{- if (.Param "ShowPostNavLinks") }}
+                    {{- partial "post_nav_links.html" . }}
+                {{- end }}
+            </footer>
+        </article>
     </div>
-    {{- end }}
-    {{- if not (.Param "hideMeta") }}
-    <div class="post-meta">
-      {{- partial "post_meta.html" . -}}
-      {{- partial "translation_list.html" . -}}
-      {{- partial "edit_post.html" . -}}
-      {{- partial "post_canonical.html" . -}}
-    </div>
-    {{- end }}
-  </header>
-  {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
-  {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
-  {{- if (.Param "ShowToc") }}
-  {{- partial "toc.html" . }}
-  {{- end }}
-
-  {{- if .Content }}
-  <div class="post-content">
-    {{- if not (.Param "disableAnchoredHeadings") }}
-    {{- partial "anchored_headings.html" .Content -}}
-    {{- else }}{{ .Content }}{{ end }}
-  </div>
-  {{- end }}
-
-  <footer class="post-footer">
-    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
-    <ul class="post-tags">
-      {{- range ($.GetTerms $tags) }}
-      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-      {{- end }}
-    </ul>
-    {{- if (.Param "ShowPostNavLinks") }}
-    {{- partial "post_nav_links.html" . }}
-    {{- end }}
-    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
-    {{- partial "share_icons.html" . -}}
-    {{- end }}
-  </footer>
-
-  {{- if (.Param "comments") }}
-  {{- partial "comments.html" . }}
-  {{- end }}
-</article>
-
-{{- end }}{{/* end main */}}
+{{- end }}

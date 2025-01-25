@@ -1,0 +1,40 @@
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- if and (gt (len $pages) 1) (in $pages . ) }}
+    <nav class="flex">
+        {{- with $pages.Next . }}
+            <a
+                class="group flex w-1/2 shrink-0 flex-col items-start rounded-lg px-2 text-gray-500 hover:text-gray-900"
+                href="{{ .Permalink }}"
+            >
+                <span
+                    class="text-sm tracking-[1px] uppercase group-hover:text-current"
+                >
+                    «
+                    {{ i18n "prev_page" }}
+                </span>
+                <span
+                    class="overflow-hidden border-b border-transparent text-nowrap text-ellipsis group-hover:border-current"
+                >
+                    {{- .Name -}}
+                </span>
+            </a>
+        {{- end }}
+        {{- with $pages.Prev . }}
+            <a
+                class="group ms-auto flex w-1/2 shrink-0 flex-col items-end overflow-hidden rounded-lg px-2 text-right text-nowrap text-ellipsis text-gray-500 hover:text-gray-900"
+                href="{{ .Permalink }}"
+            >
+                <span
+                    class="text-sm tracking-[1px] uppercase group-hover:text-current"
+                >
+                    {{ i18n "next_page" }} »
+                </span>
+                <span
+                    class="overflow-hidden border-b border-transparent text-nowrap text-ellipsis group-hover:border-current"
+                >
+                    {{- .Name -}}
+                </span>
+            </a>
+        {{- end }}
+    </nav>
+{{- end }}

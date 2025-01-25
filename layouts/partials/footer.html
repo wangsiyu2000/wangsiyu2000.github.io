@@ -1,0 +1,23 @@
+{{- if not (.Param "hideFooter") }}
+    {{ partial "xiaohongshu.html" }}
+    <footer class="p-4 text-center text-sm">
+        {{- if not site.Params.footer.hideCopyright }}
+            {{- if site.Copyright }}
+                <span>{{ site.Copyright | markdownify }}</span>
+            {{- else }}
+                <span class="text-gray-500">
+                    &copy;
+                    {{ now.Year }}
+                    <a
+                        href="{{ "" | absLangURL }}"
+                        class="border-b border-transparent hover:border-black"
+                    >
+                        {{ T "name" }}
+                    </a>
+                </span>
+            {{- end }}
+        {{- end }}
+    </footer>
+{{- end }}
+
+{{- partial "extend_footer.html" . }}

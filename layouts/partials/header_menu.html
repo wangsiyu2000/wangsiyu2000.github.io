@@ -1,0 +1,22 @@
+{{- $currentPage := . }}
+<ul class="divide-y-1 overflow-hidden text-center md:flex md:divide-none">
+    {{- range site.Menus.main }}
+        {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
+        {{- $page_url:= $currentPage.Permalink | absLangURL }}
+        <li class="border-slate-200 px-6 py-3">
+            <a
+                href="{{ .URL | absLangURL }}"
+                title="{{ .Title | default .Name }}"
+                {{- if eq $menu_item_url $page_url }}
+                    class="*:after:left-1/4 *:after:right-1/4"
+                {{- end }}
+            >
+                <span
+                    class="relative rounded-[2px] after:absolute after:right-1/2 after:-bottom-1 after:left-1/2 after:hidden after:h-[2px] after:bg-black after:transition-all after:ease-in hover:after:right-0 hover:after:left-0 md:after:block"
+                >
+                    {{- .Name | strings.FirstUpper -}}
+                </span>
+            </a>
+        </li>
+    {{- end }}
+</ul>

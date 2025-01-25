@@ -1,4 +1,4 @@
-{{- with resources.Get "css/styles.css" | postCSS }}
+{{- with resources.Get "css/dist/styles.css" }}
     {{- if not site.Params.assets.disableFingerprinting }}
         {{- $stylesheet := . | fingerprint }}
         <link

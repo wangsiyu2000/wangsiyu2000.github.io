@@ -3,7 +3,7 @@ body {
 }
 
 .meteor-shower {
-    @apply absolute top-1/2 left-1/2 h-0.5 w-0.5 bg-rose-200 rounded-[9999px] shadow-[0_0_0_1px_#ffffff10] rotate-[215deg] will-change-auto;
+    @apply absolute top-1/2 left-1/2 size-[2px] translate-z-0 rotate-[215deg] rounded-[9999px] bg-rose-200 shadow-[0_0_0_1px_#ffffff10] will-change-auto;
     animation: meteor 5s linear infinite;
 }
 
@@ -19,14 +19,14 @@ body {
 
 @keyframes meteor {
     0% {
-        transform: rotate(215deg) translateX(0);
+        transform: translateX(0);
         opacity: 1;
     }
     70% {
         opacity: 1;
     }
     100% {
-        transform: rotate(215deg) translateX(-500px);
+        transform: translateX(-500px);
         opacity: 0;
     }
 }

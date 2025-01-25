@@ -1,26 +1,26 @@
 @font-face {
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url(../fonts/jost.woff2) format("woff2");
-  unicode-range: U+0000-00FF;
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url(/fonts/jost.woff2) format('woff2');
+    unicode-range: U+0000-00FF;
 }
 
 @font-face {
-  font-family: "Corinthia";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(../fonts/corinthia.woff2) format("woff2");
-  unicode-range: U+0000-00FF;
+    font-family: 'Corinthia';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/corinthia.woff2) format('woff2');
+    unicode-range: U+0000-00FF;
 }
 
 @font-face {
-  font-family: "Corinthia";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(../fonts/corinthia.woff2) format("woff2");
-  unicode-range: U+0000-00FF;
+    font-family: 'Corinthia';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/fonts/corinthia.woff2) format('woff2');
+    unicode-range: U+0000-00FF;
 }
